@@ -5,6 +5,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { User } from './users/users.model';
 import { UsersModule } from './users/users.module';
+import { RolesModule } from './roles/roles.module';
+import { Roles } from './roles/roles.model';
+import { UserRoles } from './roles/user-roles.model';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -18,10 +22,12 @@ import { UsersModule } from './users/users.module';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      models: [User],
+      models: [User, Roles, UserRoles],
       autoLoadModels: true,
     }),
     UsersModule,
+    RolesModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
